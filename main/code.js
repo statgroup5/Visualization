@@ -1,83 +1,148 @@
-google.charts.load("current", {
-  packages: ["corechart"]
-});
-google.charts.setOnLoadCallback(drawChart);
+window.onload = function () {
+  google.charts.load("current", {
+    packages: ["corechart"]
+  });
+  google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
-  url =
-    "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
-  queryString = encodeURIComponent("select A,B,C,D,E,F");
-  var query = new google.visualization.Query(url + queryString);
-  query.send(handleGDPLineResponse);
+  var animate = "out"
 
-  url =
-    "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GrowthRate&headers=1&tq=";
-  queryString = encodeURIComponent("select A,B,C,D,E,F");
-  var query = new google.visualization.Query(url + queryString);
-  query.send(handleTaxGrowthRateLineResponse);
-}
-var animate = "out"
-
-function handleGDPLineResponse(response) {
-  if (response.isError()) {
-    errorAlert(response);
-    return;
+  function drawChart() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,B,C,D,E,F");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GrowthRate&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B,C,D,E,F");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleTaxGrowthRateLineResponse);
   }
-  var data = response.getDataTable();
-  var options = {
-    title: 'Gross Domestic Product 1995-1017 (GDP)',
-    titleTextStyle: {
-      fontSize: 18,
-    },
-    hAxis: {
-      title: "Year",
-      format: "",
-      viewWindow: {
-        max: 2017
-      }
-    },
-    vAxis: {
-      title: "GDP",
-    },
-    animation: {
-      duration: 1000,
-      easing: animate,
-      startup: true,
-    },
-  }
-  var chart = new google.visualization.LineChart(
-    document.getElementById("GDP_5Country"));
-  chart.draw(data, options);
-}
 
-function handleTaxGrowthRateLineResponse(response) {
-  if (response.isError()) {
+  function drawChartITA() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,B");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+  }
+
+  function drawChartGER() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,E");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+  }
+
+  function drawChartLUX() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,F");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+  }
+
+  function drawChartCHE() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,C");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+  }
+
+  function drawChartFRA() {
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+    var queryString = encodeURIComponent("select A,D");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+  }
+
+  function handleGDPLineResponse(response) {
+    if (response.isError()) {
       errorAlert(response);
       return;
-  }
-  var data = response.getDataTable();
-  var options = {
-      title: "Tax on Income And Profits of Individuals Growth Rate",
-      curveType: 'function',
+    }
+    var data = response.getDataTable();
+    var options = {
+      title: 'Gross Domestic Product 1995-1017 (GDP)',
+      titleTextStyle: {
+        fontSize: 18, // 12, 18 whatever you want (don't specify px)
+        // bold: true,
+      },
       hAxis: {
-          format: '#',
-          title: "Year"
+        title: "Year",
+        format: "",
+        viewWindow: {
+          max: 2017
+        }
       },
       vAxis: {
-        title: "Growth Rate",
+        title: "GDP",
       },
       animation: {
-          duration: 1000,
-          easing: animate,
-          startup: true,
+        duration: 1000,
+        easing: animate,
+        startup: true,
       },
-  };
+    }
+    var chart = new google.visualization.LineChart(
+      document.getElementById("GDP_5Country"));
+    chart.draw(data, options);
+  }
 
-  var gdp_area = new google.visualization.LineChart(
-      document.getElementById("Tax_Growth_Rate"));
-  gdp_area.draw(data, options);
-}
+  function handleTaxGrowthRateLineResponse(response) {
+    if (response.isError()) {
+        errorAlert(response);
+        return;
+    }
+    var data = response.getDataTable();
+    var options = {
+        title: "Tax on Income And Profits of Individuals Growth Rate",
+        curveType: 'function',
+        hAxis: {
+            format: '#',
+            title: "Year"
+        },
+        vAxis: {
+          title: "Growth Rate",
+        },
+        animation: {
+            duration: 1000,
+            easing: animate,
+            startup: true,
+        },
+    };
+  
+    var tax_grw = new google.visualization.LineChart(
+        document.getElementById("Tax_Growth_Rate"));
+    tax_grw.draw(data, options);
+  }
 
+  var allButton = document.getElementById('All');
+  allButton.onclick = function () {
+    drawChart()
+  }
 
-var addButton = document.getElementById('b1');
-var removeButton = document.getElementById('b2');
+  var itaButton = document.getElementById('ITA');
+  itaButton.onclick = function () {
+    drawChartITA()
+  }
+  var gerButton = document.getElementById('GER');
+  gerButton.onclick = function () {
+    drawChartGER()
+  }
+  var cheButton = document.getElementById('CHE');
+  cheButton.onclick = function () {
+    drawChartCHE()
+  }
+  var fraButton = document.getElementById('FRA');
+  fraButton.onclick = function () {
+    drawChartFRA()
+  }
+  var luxButton = document.getElementById('LUX');
+  luxButton.onclick = function () {
+    drawChartLUX()
+  }
+};

@@ -46,7 +46,7 @@ const styles = theme => ({
     },
   });
 
-class SupakornGraphs extends React.Component {
+class Switzerland extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef1 = React.createRef();
@@ -217,27 +217,25 @@ class SupakornGraphs extends React.Component {
 
         return (
             <GraphLayout name="Switzerland" history={this.props.history}>
-                <React.Fragment>
-                    <Graph title="">
-                        <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
-                    </Graph>
-                    <Graph title="">
-                        <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
-                    </Graph>
-                    <Graph title="">
-                        <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
-                    </Graph>
-                    <Graph title="">
-                        <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
-                    </Graph>
-                </React.Fragment>
+                <Graph title="กราฟแสดงส่วนประกอบของ GDP ของประเทศ Switzerland">
+                    <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
+                </Graph>
+                <Graph title="กราฟแสดงส่วนประกอบของรายได้ของรัฐบาลของประเทศ Switzerland">
+                    <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
+                </Graph>
+                <Graph title="กราฟแสดงมูลค่า GDP ของประเทศ Switzerland ในแต่ละปี">
+                    <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
+                </Graph>
+                <Graph title="กราฟแสดงค่าของรายได้ที่รัฐบาลได้รับของประเทศ Switzerland ในแต่ละปี">
+                    <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
+                </Graph>
             </GraphLayout>
         );
     }
 }
 
-SupakornGraphs.propTypes = {
+Switzerland.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(SupakornGraphs);
+  export default withStyles(styles)(Switzerland);

@@ -46,7 +46,7 @@ const styles = theme => ({
     },
   });
 
-class Luxembourg extends React.Component {
+class Germany extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef1 = React.createRef();
@@ -61,25 +61,25 @@ class Luxembourg extends React.Component {
         
         function drawChart() {
             let url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
             let queryString = encodeURIComponent("select A,B,C,D,E,F,G");
             let query = new google.visualization.Query(url + queryString);
             query.send(handleGDPStackFactorsResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,B,C,D,E");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevStackFactorsResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,H");
             query = new google.visualization.Query(url + queryString);
             query.send(handleGDPLineResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,F");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevLineResponse);
@@ -216,17 +216,17 @@ class Luxembourg extends React.Component {
         const { classes } = this.props;
 
         return (
-            <GraphLayout name="Luxembourg" history={this.props.history}>
-                <Graph title="กราฟแสดงส่วนประกอบของ GDP ของประเทศ Luxembourg">
+            <GraphLayout name="Germany" history={this.props.history}>
+                <Graph title="">
                     <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="กราฟแสดงส่วนประกอบของรายได้ของรัฐบาลของประเทศ Luxembourg">
+                <Graph title="">
                     <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="กราฟแสดงมูลค่า GDP ของประเทศ Luxembourg ในแต่ละปี">
+                <Graph title="">
                     <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="กราฟแสดงค่าของรายได้ที่รัฐบาลได้รับของประเทศ Luxembourg ในแต่ละปี">
+                <Graph title="">
                     <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
                 </Graph>
             </GraphLayout>
@@ -234,8 +234,8 @@ class Luxembourg extends React.Component {
     }
 }
 
-Luxembourg.propTypes = {
+Germany.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(Luxembourg);
+export default withStyles(styles)(Germany);
