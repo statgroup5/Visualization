@@ -4,8 +4,13 @@ import { MemoryRouter, StaticRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import GChart from './components/GeoChart';
-import Switzerland from './graphs/Switzerland';
 import GraphLayout from './components/GraphLayout';
+
+import Switzerland from './graphs/Switzerland';
+import Germany from './graphs/Germany';
+import Luxembourg from './graphs/Luxembourg';
+import Italy from './graphs/Italy';
+import France from './graphs/France';
 
 const styles = theme => ({
   root: {
@@ -30,10 +35,7 @@ class MainImpl extends Component {
         </div>
         <Grid className={classes.gridRoot} container spacing={8} direction="column" alignItems="center">
           <Grid item>
-            <Switzerland />
-          </Grid>
-          <Grid item>
-            <Switzerland />
+
           </Grid>
         </Grid>
       </React.Fragment>
@@ -50,11 +52,11 @@ class App extends Component {
         <MemoryRouter basename="/">
           <Switch>
             <Route exact path="/" render={props => <Main {...props} />} />
-            <Route exact path="/germany" render={props => <GraphLayout {...props} /> } />
-            <Route exact path="/france" render={props => <GraphLayout {...props} /> } />
+            <Route exact path="/germany" render={props => <Germany {...props} /> } />
+            <Route exact path="/france" render={props => <France {...props} /> } />
             <Route exact path="/switzerland" render={props => <Switzerland {...props} /> } />
-            <Route exact path="/luxembourg" render={props => <GraphLayout {...props} /> } />
-            <Route exact path="/italy" render={props => <GraphLayout {...props} /> } />
+            <Route exact path="/luxembourg" render={props => <Luxembourg {...props} /> } />
+            <Route exact path="/italy" render={props => <Italy {...props} /> } />
           </Switch>
         </MemoryRouter>
       </React.Fragment>

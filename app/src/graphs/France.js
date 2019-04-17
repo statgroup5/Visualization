@@ -46,7 +46,7 @@ const styles = theme => ({
     },
   });
 
-class Luxembourg extends React.Component {
+class France extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef1 = React.createRef();
@@ -216,7 +216,7 @@ class Luxembourg extends React.Component {
         const { classes } = this.props;
 
         return (
-            <GraphLayout name="Luxembourg" history={this.props.history}>
+            <GraphLayout name="France" history={this.props.history}>
                 <Graph title="">
                     <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
                 </Graph>
@@ -234,8 +234,8 @@ class Luxembourg extends React.Component {
     }
 }
 
-Luxembourg.propTypes = {
+France.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(Luxembourg);
+  export default withStyles(styles)(France);
