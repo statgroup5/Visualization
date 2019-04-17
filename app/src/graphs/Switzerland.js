@@ -217,7 +217,7 @@ class Switzerland extends React.Component {
 
         return (
             <GraphLayout name="Switzerland" history={this.props.history}>
-                <Graph title="กราฟแสดงส่วนประกอบของ GDP ของประเทศ Switzerland">//stack_CHE_GDP
+                <Graph title="กราฟแสดงส่วนประกอบของ GDP ของประเทศ Switzerland">
                     <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
                 </Graph>
                 <Graph title="กราฟแสดงส่วนประกอบของรายได้ของรัฐบาลของประเทศ Switzerland">
