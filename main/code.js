@@ -17,6 +17,26 @@ window.onload = function () {
     queryString = encodeURIComponent("select A,B,C,D,E,F");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleTaxGrowthRateLineResponse);
+    var url =
+      "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GDP_DIS&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B,C,D,E");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPDISLineResponse);
+    var url =
+       "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GDP_FI&headers=1&tq=";
+     queryString = encodeURIComponent("select A,B,C,D,E");
+     var query = new google.visualization.Query(url + queryString);
+     query.send(handleGDPFILineResponse);
+     var url =
+       "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GDP_IN&headers=1&tq=";
+     queryString = encodeURIComponent("select A,B,C,D,E");
+     var query = new google.visualization.Query(url + queryString);
+     query.send(handleGDPINLineResponse);
+     var url =
+       "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=REV_GOOD&headers=1&tq=";
+       queryString = encodeURIComponent("select A,B,C,D,E,F");
+       var query = new google.visualization.Query(url + queryString);
+       query.send(handleREVGOODLineResponse);
   }
 
   function drawChartITA() {
@@ -67,13 +87,9 @@ window.onload = function () {
     var data = response.getDataTable();
     var options = {
       title: 'Gross Domestic Product 1995-1017 (GDP)',
-      titleTextStyle: {
-        fontSize: 18, // 12, 18 whatever you want (don't specify px)
-        // bold: true,
-      },
       hAxis: {
         title: "Year",
-        format: "",
+        format: '#',
         viewWindow: {
           max: 2017
         }
@@ -90,6 +106,94 @@ window.onload = function () {
     var chart = new google.visualization.LineChart(
       document.getElementById("GDP_5Country"));
     chart.draw(data, options);
+  }
+
+  function handleGDPDISLineResponse(response) {
+   
+    if (response.isError()) {
+      errorAlert(response);
+      return;
+    }
+    var data = response.getDataTable();
+
+    var options = {
+      title : 'GDP Distributive',
+      vAxis: {title: 'Euro, Millions'},
+      hAxis: {title: 'Year',
+      format: '#'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var gdpdis = new google.visualization.ComboChart(
+      document.getElementById("GDP_Distributive"));
+    gdpdis.draw(data, options);
+  }
+
+  function handleGDPFILineResponse(response) {
+    
+    if (response.isError()) {
+      errorAlert(response);
+      return;
+    }
+    var data = response.getDataTable();
+
+    var options = {
+      title : 'GDP Financial and insurance activities',
+      vAxis: {title: 'Euro, Millions'},
+      hAxis: {title: 'Year',
+      format: '#'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var gdpfi = new google.visualization.ComboChart(
+      document.getElementById("GDP_Financial"));
+    gdpfi.draw(data, options);
+  }
+
+  function handleGDPINLineResponse(response) {
+    
+    if (response.isError()) {
+      errorAlert(response);
+      return;
+    }
+    var data = response.getDataTable();
+
+    var options = {
+      title : 'GDP Industry Energy',
+      vAxis: {title: 'Euro, Millions'},
+      hAxis: {title: 'Year',
+      format: '#'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var gdpin = new google.visualization.ComboChart(
+      document.getElementById("GDP_Industry"));
+    gdpin.draw(data, options);
+  }
+
+  function handleREVGOODLineResponse(response) {
+    
+    if (response.isError()) {
+      errorAlert(response);
+      return;
+    }
+    var data = response.getDataTable();
+
+    var options = {
+      title : 'Revenue Good and Service',
+      vAxis: {title: 'Euro, Millions'},
+      hAxis: {title: 'Year',
+      format: '#'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var revgood = new google.visualization.ComboChart(
+      document.getElementById("REV_Good"));
+    revgood.draw(data, options);
   }
 
   function handleTaxGrowthRateLineResponse(response) {
