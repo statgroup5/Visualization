@@ -468,9 +468,10 @@ const Main = withStyles(styles)(MainImpl);
 
 class App extends Component {
   render() {
+    const basename = process.env.PUBLIC_URL || "/";
     return (
       <React.Fragment>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename={basename}>
           <Switch>
             <Route exact path="/" render={props => <Main {...props} />} />
             <Route exact path="/germany" render={props => <Germany {...props} /> } />
