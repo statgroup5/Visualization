@@ -422,7 +422,7 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้มการเติบโตของรายได้ของรัฐในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllRev} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color={this.state.revIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 0 }, () => this.chart.RdrawChart())}}>All</Button>
+                <Button variant="raised" color={this.state.revIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 0 }, () => this.chart.RdrawChartALL())}}>All</Button>
                 <Button variant="raised" color={this.state.revIndex == 1 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 1 }, () => this.chart.RdrawChartFRA())}}>France</Button>
                 <Button variant="raised" color={this.state.revIndex == 2 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 2 }, () => this.chart.RdrawChartGER())}}>Germany</Button>
                 <Button variant="raised" color={this.state.revIndex == 3 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 3 }, () => this.chart.RdrawChartITA())}}>Italy</Button>
