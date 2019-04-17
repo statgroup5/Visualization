@@ -21,7 +21,7 @@ const styles = theme => ({
     },
     inactive: {
         fontWeight: 'normal',
-        color: 'grey'
+        color: '#BFBFBF'
     }
 });
 
