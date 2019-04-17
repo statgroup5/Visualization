@@ -6,6 +6,7 @@ cache:
   - node_modules
 before_script: cd app
 script:
+  - npm i
   - npm run build
 deploy:
   provider: pages
