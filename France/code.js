@@ -5,26 +5,26 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,D,E,F,G,H,L");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=FRA_GDP_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B,C,D,E");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleGDPStackFactorsResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,F,J,L");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=FRA_REV_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B,C,D,E");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleRevStackFactorsResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,B");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=FRA_GDP_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,F");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleGDPLineResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,B");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=FRA_REV_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,F");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleRevLineResponse);
 }
@@ -60,9 +60,9 @@ function handleGDPStackFactorsResponse(response) {
         },
     };
 
-    var chart = new google.visualization.AreaChart(
-        document.getElementById("stack_LUX_GDP"));
-    chart.draw(data, options_fullStacked);
+    var gdp_area = new google.visualization.AreaChart(
+        document.getElementById("stack_FRA_GDP"));
+    gdp_area.draw(data, options_fullStacked);
 }
 
 function handleRevStackFactorsResponse(response) {
@@ -95,9 +95,9 @@ function handleRevStackFactorsResponse(response) {
         },
     };
 
-    var chart = new google.visualization.AreaChart(
-        document.getElementById("stack_LUX_REV"));
-    chart.draw(data, options_fullStacked);
+    var gdp_area = new google.visualization.AreaChart(
+        document.getElementById("stack_FRA_REV"));
+    gdp_area.draw(data, options_fullStacked);
 }
 
 function handleGDPLineResponse(response) {
@@ -119,9 +119,9 @@ function handleGDPLineResponse(response) {
         },
     };
 
-    var chart = new google.visualization.LineChart(
-        document.getElementById("line_LUX_GDP"));
-    chart.draw(data, options);
+    var gdp_area = new google.visualization.LineChart(
+        document.getElementById("line_FRA_GDP"));
+    gdp_area.draw(data, options);
 }
 
 function handleRevLineResponse(response) {
@@ -143,9 +143,9 @@ function handleRevLineResponse(response) {
         },
     };
 
-    var chart = new google.visualization.LineChart(
-        document.getElementById("line_LUX_REV"));
-    chart.draw(data, options);
+    var gdp_area = new google.visualization.LineChart(
+        document.getElementById("line_FRA_REV"));
+    gdp_area.draw(data, options);
 }
 
 function errorAlert(res) {
