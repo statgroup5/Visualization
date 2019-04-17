@@ -217,16 +217,16 @@ class Luxembourg extends React.Component {
 
         return (
             <GraphLayout name="Luxembourg" history={this.props.history}>
-                <Graph title="">
+                <Graph title="กราฟแสดงส่วนประกอบของ GDP ของประเทศ Luxembourg">
                     <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="">
+                <Graph title="กราฟแสดงส่วนประกอบของรายได้ของรัฐบาลของประเทศ Luxembourg">
                     <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="">
+                <Graph title="กราฟแสดงมูลค่า GDP ของประเทศ Luxembourg ในแต่ละปี">
                     <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="">
+                <Graph title="กราฟแสดงค่าของรายได้ที่รัฐบาลได้รับของประเทศ Luxembourg ในแต่ละปี">
                     <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
                 </Graph>
             </GraphLayout>
