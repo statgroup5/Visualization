@@ -150,7 +150,7 @@ class MainImpl extends Component {
           }
         },
         vAxis: {
-          title: "GDP",
+          title: "Euro, Millions",
         },
         animation: {
           duration: 1000,
@@ -321,7 +321,7 @@ class MainImpl extends Component {
           }
         },
         vAxis: {
-          title: "GDP",
+          title: "Euro, Millions",
         },
         animation: {
           duration: 1000,
