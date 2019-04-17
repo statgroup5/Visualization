@@ -409,7 +409,7 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้มการเติบโตของ GDP ในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllGdp} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color={this.state.gdpIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 0 }, () => this.chart.drawChart())}}>All</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 0 }, () => this.chart.drawChartALL())}}>All</Button>
                 <Button variant="raised" color={this.state.gdpIndex == 1 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 1 }, () => this.chart.drawChartFRA())}}>France</Button>
                 <Button variant="raised" color={this.state.gdpIndex == 2 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 2 }, () => this.chart.drawChartGER())}}>Germany</Button>
                 <Button variant="raised" color={this.state.gdpIndex == 3 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 3 }, () => this.chart.drawChartITA())}}>Italy</Button>
