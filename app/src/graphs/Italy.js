@@ -224,17 +224,17 @@ class Italy extends React.Component {
 
         return (
             <GraphLayout name="Italy" history={this.props.history}>
-                <Graph title="กราฟแสดงส่วนประกอบ GDP ของประเทศ Italy">
-                    <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
-                </Graph>
                 <Graph title="กราฟแสดงแนวโน้มมูลค่า GDP ในแต่ละปีของประเทศ Italy ">
                     <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
                 </Graph>
-                <Graph title="กราฟแสดงส่วนประกอบของรายได้รัฐบาลของประเทศ Italy">
-                    <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
+                <Graph title="กราฟแสดงส่วนประกอบ GDP ของประเทศ Italy">
+                    <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
                 </Graph>
                 <Graph title="กราฟแสดงแนวโน้มมูลค่าของรายได้ของรัฐบาลในแต่ละปีของประเทศ Italy">
                     <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
+                </Graph>
+                <Graph title="กราฟแสดงส่วนประกอบของรายได้รัฐบาลของประเทศ Italy">
+                    <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
                 </Graph>
             </GraphLayout>
         );
