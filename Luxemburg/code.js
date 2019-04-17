@@ -5,26 +5,26 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,B,C,D,E,F,G");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,D,E,F,G,H,L");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleGDPStackFactorsResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,B,C,D,E");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,F,J,L");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleRevStackFactorsResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,H");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_GDP_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleGDPLineResponse);
 
     url =
-        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
-    queryString = encodeURIComponent("select A,F");
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=LUX_REV_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,B");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleRevLineResponse);
 }
@@ -61,7 +61,7 @@ function handleGDPStackFactorsResponse(response) {
     };
 
     var gdp_area = new google.visualization.AreaChart(
-        document.getElementById("stack_CHE_GDP"));
+        document.getElementById("stack_LUX_GDP"));
     gdp_area.draw(data, options_fullStacked);
 }
 
@@ -96,7 +96,7 @@ function handleRevStackFactorsResponse(response) {
     };
 
     var gdp_area = new google.visualization.AreaChart(
-        document.getElementById("stack_CHE_REV"));
+        document.getElementById("stack_LUX_REV"));
     gdp_area.draw(data, options_fullStacked);
 }
 
@@ -120,7 +120,7 @@ function handleGDPLineResponse(response) {
     };
 
     var gdp_area = new google.visualization.LineChart(
-        document.getElementById("line_CHE_GDP"));
+        document.getElementById("line_LUX_GDP"));
     gdp_area.draw(data, options);
 }
 
@@ -144,7 +144,7 @@ function handleRevLineResponse(response) {
     };
 
     var gdp_area = new google.visualization.LineChart(
-        document.getElementById("line_CHE_REV"));
+        document.getElementById("line_LUX_REV"));
     gdp_area.draw(data, options);
 }
 
