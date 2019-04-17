@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Graph from './Graph';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     root: {
@@ -11,11 +11,10 @@ const styles = theme => ({
     }
 });
 
-class GChart extends React.Component {
+class GeoChart extends React.Component {
     
     constructor(props) {
         super(props);
-
         this.chartRef = React.createRef();
     }
     
@@ -52,18 +51,35 @@ class GChart extends React.Component {
 
             google.visualization.events.addListener(chart, 'ready', function() {
                 const svg = _this.chartRef.current.getElementsByTagName('svg')[0];
-                svg.style = "transform: scale(1.25) translate3d(5%, -10%, 0);";
+                svg.style = "transform: scale(1.25) translate3d(5%, -5%, 0);";
             });
 
             google.visualization.events.addListener(chart, 'regionClick', function(e) {
                 console.log(e);
+                switch (e.region) {
+                    case "IT":
+                        _this.props.history.push("/italy");
+                        break;
+                    case "FR":
+                        _this.props.history.push("/france");
+                        break;
+                    case "CH":
+                        _this.props.history.push("/switzerland");
+                        break;
+                    case "DE":
+                        _this.props.history.push("/germany");
+                        break;
+                    case "LU":
+                        _this.props.history.push("/luxembourg");
+                        break;
+                }
             });
         }
     }
     
     render() {
         const { classes } = this.props;
-        
+
         return (
             <React.Fragment>
                 <div className={classes.root}>
@@ -74,8 +90,8 @@ class GChart extends React.Component {
     }
 }
     
-GChart.propTypes = {
+GeoChart.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GChart);
+export default withStyles(styles)(GeoChart);
