@@ -29,15 +29,20 @@ class GeoChart extends React.Component {
         const _this = this;
         function drawMarkersMap() {
             var data = google.visualization.arrayToDataTable([
-                ['Country',   'Population', 'Area Percentage'],
-                ['France',  1, 6],
-                ['Germany', 2, 7],
-                ['Switzerland', 3, 8],
-                ['Luxembourg', 4, 9],
-                ['Italy', 5, 10],
+                ['Country',   'Recent GDP'],
+                ['France',  2291697],
+                ['Germany', 3277340],
+                ['Switzerland', 586148],
+                ['Luxembourg', 55299],
+                ['Italy', 1724205],
             ]);
             
             var options = {
+                sizeAxis: { minValue: 55299.37, maxValue: 3277340 },
+                colorAxis: {
+                    colors: ['lightpink', 'pink', 'tomato', 'crimson' ],
+                    value: [ 55299, 586148, 1724205, 2291697, 3277340]
+                },
                 region: '150', // Western Europe
                 displayMode: 'region',
                 keepAspectRatio: true,
