@@ -4,8 +4,8 @@ node_js:
 cache:
   directories:
   - node_modules
+before_script: cd app
 script:
-  - cd app
   - npm test
   - npm run build
 deploy:
