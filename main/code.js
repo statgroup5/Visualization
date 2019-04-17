@@ -91,7 +91,7 @@ window.onload = function () {
     }
     var data = response.getDataTable();
     var options = {
-      title: 'Gross Domestic Product 1995-1017 (GDP)',
+      title: 'Gross Domestic Product 1995-2017 (GDP)',
       hAxis: {
         title: "Year",
         format: '#',
