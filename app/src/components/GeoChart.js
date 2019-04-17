@@ -51,7 +51,7 @@ class GeoChart extends React.Component {
 
             google.visualization.events.addListener(chart, 'ready', function() {
                 const svg = _this.chartRef.current.getElementsByTagName('svg')[0];
-                svg.style = "transform: scale(1.25) translate3d(5%, -10%, 0);";
+                svg.style = "transform: scale(1.25) translate3d(5%, -5%, 0);";
             });
 
             google.visualization.events.addListener(chart, 'regionClick', function(e) {

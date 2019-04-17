@@ -16,6 +16,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Graph from '../components/Graph';
+import GraphLayout from '../components/GraphLayout';
 
 const styles = theme => ({
     card: {
@@ -47,25 +49,44 @@ const styles = theme => ({
 class SupakornGraphs extends React.Component {
     constructor(props) {
         super(props);
-        this.chartRef = React.createRef();
+        this.chartRef1 = React.createRef();
+        this.chartRef2 = React.createRef();
+        this.chartRef3 = React.createRef();
+        this.chartRef4 = React.createRef();
     }
 
     componentDidMount() {
         const { google } = window;
         const _this = this;
-
+        
         function drawChart() {
-            let url = "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
+            let url =
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
             let queryString = encodeURIComponent("select A,B,C,D,E,F,G");
             let query = new google.visualization.Query(url + queryString);
             query.send(handleGDPStackFactorsResponse);
         
-            url = "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
+            url =
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,B,C,D,E");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevStackFactorsResponse);
+        
+            url =
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
+            queryString = encodeURIComponent("select A,H");
+            query = new google.visualization.Query(url + queryString);
+            query.send(handleGDPLineResponse);
+        
+            url =
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
+            queryString = encodeURIComponent("select A,F");
+            query = new google.visualization.Query(url + queryString);
+            query.send(handleRevLineResponse);
         }
 
+        const animate = "out"
+        
         function handleGDPStackFactorsResponse(response) {
             if (response.isError()) {
                 errorAlert(response);
@@ -87,11 +108,16 @@ class SupakornGraphs extends React.Component {
                 },
                 hAxis: {
                     format: '#',
-                    title: "Year"
-                }
+                    title: "year"
+                },
+                animation: {
+                    duration: 1000,
+                    easing: animate,
+                    startup: true,
+                },
             };
         
-            var gdp_area = new google.visualization.AreaChart(_this.chartRef.current);
+            var gdp_area = new google.visualization.AreaChart(_this.chartRef1.current);
             gdp_area.draw(data, options_fullStacked);
         }
         
@@ -103,7 +129,7 @@ class SupakornGraphs extends React.Component {
             var data = response.getDataTable();
         
             var options_fullStacked = {
-                title: "Rev Factors",
+                title: "Revenue Factors",
                 isStacked: "relative",
                 legend: {
                     position: "right",
@@ -117,22 +143,67 @@ class SupakornGraphs extends React.Component {
                 hAxis: {
                     format: '#',
                     title: "year"
-                }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: animate,
+                    startup: true,
+                },
             };
         
-            var gdp_area = new google.visualization.AreaChart(
-                document.getElementById("stack_CHE_Rev")
-            );
+            var gdp_area = new google.visualization.AreaChart(_this.chartRef2.current);
             gdp_area.draw(data, options_fullStacked);
         }
         
+        function handleGDPLineResponse(response) {
+            if (response.isError()) {
+                errorAlert(response);
+                return;
+            }
+            var data = response.getDataTable();
+            var options = {
+                title: "GDP",
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                animation: {
+                    duration: 1000,
+                    easing: animate,
+                    startup: true,
+                },
+            };
+        
+            var gdp_area = new google.visualization.LineChart(_this.chartRef3.current);
+            gdp_area.draw(data, options);
+        }
+        
+        function handleRevLineResponse(response) {
+            if (response.isError()) {
+                errorAlert(response);
+                return;
+            }
+            var data = response.getDataTable();
+            var options = {
+                title: "Revenue",
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                animation: {
+                    duration: 1000,
+                    easing: animate,
+                    startup: true,
+                },
+            };
+        
+            var gdp_area = new google.visualization.LineChart(_this.chartRef4.current);
+            gdp_area.draw(data, options);
+        }
+        
         function errorAlert(res) {
-            alert(
-                "Error in query: " +
-                res.getMessage() +
-                " " +
-                res.getDetailedMessage()
-            );
+            alert("Error in query: " + res.getMessage() + " " +
+                res.getDetailedMessage());
         }
 
         google.charts.load("current", {
@@ -145,19 +216,22 @@ class SupakornGraphs extends React.Component {
         const { classes } = this.props;
 
         return (
-            <Card className={classes.card}>
-                <CardHeader
-                    title="กราฟแสดง GDP ในแต่ละประเทศ"
-                    subheader="ทดสอบ"
-                />
-                <div ref={this.chartRef} style={{ width: 900, height: 500 }}></div>
-                <CardContent>
-                <Typography component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                </Typography>
-                </CardContent>
-            </Card>
+            <GraphLayout name="Switzerland" history={this.props.history}>
+                <React.Fragment>
+                    <Graph title="">
+                        <div ref={this.chartRef1} style={{ width: 900, height: 500 }}></div>
+                    </Graph>
+                    <Graph title="">
+                        <div ref={this.chartRef2} style={{ width: 900, height: 500 }}></div>
+                    </Graph>
+                    <Graph title="">
+                        <div ref={this.chartRef3} style={{ width: 900, height: 500 }}></div>
+                    </Graph>
+                    <Graph title="">
+                        <div ref={this.chartRef4} style={{ width: 900, height: 500 }}></div>
+                    </Graph>
+                </React.Fragment>
+            </GraphLayout>
         );
     }
 }
