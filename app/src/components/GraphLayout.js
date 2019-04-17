@@ -22,14 +22,14 @@ class GraphLayout extends React.Component {
         return (
             <React.Fragment>
                 <Grid className={classes.root} container direction="row">
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                         <div className={classes.rootLeft}>
                             <Button variant="fab" onClick={() => this.props.history.replace("/")}><ArrowBack /></Button>
                             <Typography variant="h2">{this.props.name}</Typography>
                         </div>
                     </Grid>
-                    <Grid item xs={8}>
-                        <Grid container direction="column" spacing={8}>
+                    <Grid item xs={9}>
+                        <Grid container direction="column" spacing={8} alignItems="center">
                             { 
                                 childrens.map(ele => (
                                     <Grid item>
