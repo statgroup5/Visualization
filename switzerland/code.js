@@ -13,6 +13,16 @@ function drawChart() {
     queryString = encodeURIComponent("select A,B,C,D,E");
     var query = new google.visualization.Query(url + queryString);
     query.send(handleRevStackFactorsResponse);
+
+    url = "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,H");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleGDPLineResponse);
+
+    url = "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
+    queryString = encodeURIComponent("select A,F");
+    var query = new google.visualization.Query(url + queryString);
+    query.send(handleRevLineResponse);
 }
 
 function handleGDPStackFactorsResponse(response) {
@@ -54,7 +64,7 @@ function handleRevStackFactorsResponse(response) {
     var data = response.getDataTable();
 
     var options_fullStacked = {
-        title: "Rev Factors",
+        title: "Revenue Factors",
         isStacked: "relative",
         legend: {
             position: "right",
@@ -72,9 +82,46 @@ function handleRevStackFactorsResponse(response) {
     };
 
     var gdp_area = new google.visualization.AreaChart(
-        document.getElementById("stack_CHE_Rev")
+        document.getElementById("stack_CHE_REV")
     );
     gdp_area.draw(data, options_fullStacked);
+}
+
+function handleGDPLineResponse(response) {
+    if (response.isError()) {
+        errorAlert(response);
+        return;
+    }
+    var data = response.getDataTable();
+    var options = {
+        title: "GDP",
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+
+    var gdp_area = new google.visualization.LineChart(
+        document.getElementById("line_CHE_GDP")
+    );
+    gdp_area.draw(data, options);
+}
+function handleRevLineResponse(response) {
+    if (response.isError()) {
+        errorAlert(response);
+        return;
+    }
+    var data = response.getDataTable();
+    var options = {
+        title: "Revenue",
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+
+    var gdp_area = new google.visualization.LineChart(
+        document.getElementById("line_CHE_REV")
+    );
+    gdp_area.draw(data, options);
 }
 
 function errorAlert(res) {
