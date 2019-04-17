@@ -85,6 +85,14 @@ class MainImpl extends Component {
       var query = new google.visualization.Query(url + queryString);
       query.send(_this.chart.handleREVLineResponse);
     };
+
+    this.chart.drawChartALL = function() {
+      var url =
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+      var queryString = encodeURIComponent("select A,B,C,D,E,F");
+      var query = new google.visualization.Query(url + queryString);
+      query.send(_this.chart.handleGDPLineResponse);
+    };
     
     this.chart.drawChartITA = function() {
       var url =
@@ -325,7 +333,7 @@ class MainImpl extends Component {
       chart.draw(data, options);
     };
   
-    this.chart.RdrawChart = function() {
+    this.chart.RdrawChartALL = function() {
       var url =
         "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_REV&headers=1&tq=";
       var queryString = encodeURIComponent("select A,B,C,D,E,F");
@@ -396,7 +404,7 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้มการเติบโตของ GDP ในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017" subheader="จากการทดสอบด้วย Anova One-Factor เพื่อหาความสัมพันธ์ของอัตราการเติบโตของภาษีของแต่ละประเทศ พบว่าแต่ละประเทศมีแนวโน้มการเติบโตในลักษณะเดียวกัน จากกราฟจะเห็นได้ว่า เส้นแนวโน้มของแต่ละประเทศมีความคล้ายคลึงกัน">
               <div ref={this.refAllGdp} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChart()}>All</Button>
+                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartALL()}>All</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.drawChartFRA()}>France</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.drawChartGER()}>Germany</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.drawChartITA()}>Italy</Button>
@@ -409,7 +417,7 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้วภาษีรายได้บุคคลธรรมดาของแต่ละประเทศ ตั้งแต่ปี 1996 - 2017">
               <div ref={this.refAllRev} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChart()}>All</Button>
+                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartALL()}>All</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartFRA()}>France</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartGER()}>Germany</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartITA()}>Italy</Button>
