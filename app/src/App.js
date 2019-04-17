@@ -90,6 +90,14 @@ class MainImpl extends Component {
       var query = new google.visualization.Query(url + queryString);
       query.send(_this.chart.handleREVLineResponse);
     };
+
+    this.chart.drawChartALL = function() {
+      var url =
+        "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_GDP&headers=1&tq=";
+      var queryString = encodeURIComponent("select A,B,C,D,E,F");
+      var query = new google.visualization.Query(url + queryString);
+      query.send(_this.chart.handleGDPLineResponse);
+    };
     
     this.chart.drawChartITA = function() {
       var url =
@@ -147,7 +155,7 @@ class MainImpl extends Component {
           }
         },
         vAxis: {
-          title: "GDP",
+          title: "Euro, Millions",
         },
         animation: {
           duration: 1000,
@@ -318,7 +326,7 @@ class MainImpl extends Component {
           }
         },
         vAxis: {
-          title: "GDP",
+          title: "Euro, Millions",
         },
         animation: {
           duration: 1000,
@@ -330,7 +338,7 @@ class MainImpl extends Component {
       chart.draw(data, options);
     };
   
-    this.chart.RdrawChart = function() {
+    this.chart.RdrawChartALL = function() {
       var url =
         "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=5Country_REV&headers=1&tq=";
       var queryString = encodeURIComponent("select A,B,C,D,E,F");
