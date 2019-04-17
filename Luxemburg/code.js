@@ -1,4 +1,6 @@
-google.charts.load("current", {packages : [ "corechart" ]});
+google.charts.load("current", {
+    packages: ["corechart"]
+});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
@@ -27,6 +29,7 @@ function drawChart() {
     query.send(handleRevLineResponse);
 }
 var animate = "out"
+
 function handleGDPStackFactorsResponse(response) {
     if (response.isError()) {
         errorAlert(response);
@@ -35,16 +38,25 @@ function handleGDPStackFactorsResponse(response) {
     var data = response.getDataTable();
 
     var options_fullStacked = {
-        title : "GDP Factors",
-        isStacked : "relative",
-        legend : {position : "right", maxLines : 3},
-        vAxis :
-            {format : "#%", minValue : 0, ticks : [ 0, 0.2, 0.4, 0.6, 0.8, 1 ]},
-        hAxis : {format : '#', title : "year"},
-        animation : {
-            duration : 1000,
-            easing : animate,
-            startup : true,
+        title: "GDP Factors",
+        isStacked: "relative",
+        legend: {
+            position: "right",
+            maxLines: 3
+        },
+        vAxis: {
+            format: "#%",
+            minValue: 0,
+            ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+        },
+        hAxis: {
+            format: '#',
+            title: "year"
+        },
+        animation: {
+            duration: 1000,
+            easing: animate,
+            startup: true,
         },
     };
 
@@ -61,16 +73,25 @@ function handleRevStackFactorsResponse(response) {
     var data = response.getDataTable();
 
     var options_fullStacked = {
-        title : "Revenue Factors",
-        isStacked : "relative",
-        legend : {position : "right", maxLines : 3},
-        vAxis :
-            {format : "#%", minValue : 0, ticks : [ 0, 0.2, 0.4, 0.6, 0.8, 1 ]},
-        hAxis : {format : '#', title : "year"},
-        animation : {
-            duration : 1000,
-            easing : animate,
-            startup : true,
+        title: "Revenue Factors",
+        isStacked: "relative",
+        legend: {
+            position: "right",
+            maxLines: 3
+        },
+        vAxis: {
+            format: "#%",
+            minValue: 0,
+            ticks: [0, 0.2, 0.4, 0.6, 0.8, 1]
+        },
+        hAxis: {
+            format: '#',
+            title: "year"
+        },
+        animation: {
+            duration: 1000,
+            easing: animate,
+            startup: true,
         },
     };
 
@@ -86,13 +107,15 @@ function handleGDPLineResponse(response) {
     }
     var data = response.getDataTable();
     var options = {
-        title : "GDP",
-        curveType : 'function',
-        legend : {position : 'bottom'},
-        animation : {
-            duration : 1000,
-            easing : animate,
-            startup : true,
+        title: "GDP",
+        curveType: 'function',
+        legend: {
+            position: 'bottom'
+        },
+        animation: {
+            duration: 1000,
+            easing: animate,
+            startup: true,
         },
     };
 
@@ -100,6 +123,7 @@ function handleGDPLineResponse(response) {
         document.getElementById("line_LUX_GDP"));
     gdp_area.draw(data, options);
 }
+
 function handleRevLineResponse(response) {
     if (response.isError()) {
         errorAlert(response);
@@ -107,13 +131,15 @@ function handleRevLineResponse(response) {
     }
     var data = response.getDataTable();
     var options = {
-        title : "Revenue",
-        curveType : 'function',
-        legend : {position : 'bottom'},
-        animation : {
-            duration : 1000,
-            easing : animate,
-            startup : true,
+        title: "Revenue",
+        curveType: 'function',
+        legend: {
+            position: 'bottom'
+        },
+        animation: {
+            duration: 1000,
+            easing: animate,
+            startup: true,
         },
     };
 
@@ -124,5 +150,5 @@ function handleRevLineResponse(response) {
 
 function errorAlert(res) {
     alert("Error in query: " + res.getMessage() + " " +
-          res.getDetailedMessage());
+        res.getDetailedMessage());
 }
