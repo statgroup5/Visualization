@@ -9,6 +9,9 @@ import Graph from './Graph';
 const styles = theme => ({
     root: {
         padding: 8
+    },
+    rootLeft: {
+        position: 'fixed'
     }
 });
 
@@ -20,8 +23,10 @@ class GraphLayout extends React.Component {
             <React.Fragment>
                 <Grid className={classes.root} container direction="row">
                     <Grid item xs={4}>
-                        <Button variant="fab" onClick={() => this.props.history.replace("/")}><ArrowBack /></Button>
-                        <Typography variant="h2">{this.props.name}</Typography>
+                        <div className={classes.rootLeft}>
+                            <Button variant="fab" onClick={() => this.props.history.replace("/")}><ArrowBack /></Button>
+                            <Typography variant="h2">{this.props.name}</Typography>
+                        </div>
                     </Grid>
                     <Grid item xs={8}>
                         <Grid container direction="column" spacing={8}>
