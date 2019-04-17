@@ -15,6 +15,8 @@ class GeoChart extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef = React.createRef();
+        this.rootRef = React.createRef();
+        this.titleRef = React.createRef();
     }
     
     componentDidMount() {
@@ -56,10 +58,14 @@ class GeoChart extends React.Component {
             google.visualization.events.addListener(chart, 'ready', function() {
                 const svg = _this.chartRef.current.getElementsByTagName('svg')[0];
                 svg.style = "transform: scale(1.25) translate3d(5%, -5%, 0);";
+
+                const divRootStyles = window.getComputedStyle(_this.rootRef.current);
+                const divTitleStyles = window.getComputedStyle(_this.titleRef.current);
+                const top = divRootStyles.height.replace("px", "") / 2 - divTitleStyles.height.replace("px", "");
+                _this.titleRef.current.style.top = `${top}px`;
             });
 
             google.visualization.events.addListener(chart, 'regionClick', function(e) {
-                console.log(e);
                 switch (e.region) {
                     case "IT":
                         _this.props.history.push("/italy");
@@ -86,8 +92,12 @@ class GeoChart extends React.Component {
 
         return (
             <React.Fragment>
-                <div className={classes.root}>
+                <div className={classes.root} ref={this.rootRef}>
                     <div ref={this.chartRef} className={classes.chart}></div>
+                </div>
+                <div ref={this.titleRef} style={{ position: 'absolute', zIndex: 10000, fontWeight: 'bold', left: 80, fontSize: 80 }}>
+                        <div>Western</div>
+                        <div>Europe</div>
                 </div>
             </React.Fragment>
         );
