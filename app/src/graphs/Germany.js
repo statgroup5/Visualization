@@ -61,30 +61,29 @@ class Germany extends React.Component {
         
         function drawChart() {
             let url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GER_GDP_Factors&headers=1&tq=";
             let queryString = encodeURIComponent("select A,B,C,D,E,F,G");
             let query = new google.visualization.Query(url + queryString);
             query.send(handleGDPStackFactorsResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GER_REV_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,B,C,D,E");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevStackFactorsResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GER_GDP_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,H");
             query = new google.visualization.Query(url + queryString);
             query.send(handleGDPLineResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GER_REV_Factors&headers=1&tq=";
             queryString = encodeURIComponent("select A,F");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevLineResponse);
         }
-
         const animate = "out"
         
         function handleGDPStackFactorsResponse(response) {
