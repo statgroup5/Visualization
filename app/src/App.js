@@ -401,7 +401,7 @@ class MainImpl extends Component {
         </div>
         <Grid className={classes.gridRoot} container spacing={8} direction="column" alignItems="center">
           <Grid item>
-            <Graph title="กราฟแสดงแนวโน้มการเติบโตของ GDP ในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017" subheader="จากการทดสอบด้วย Anova One-Factor เพื่อหาความสัมพันธ์ของอัตราการเติบโตของภาษีของแต่ละประเทศ พบว่าแต่ละประเทศมีแนวโน้มการเติบโตในลักษณะเดียวกัน จากกราฟจะเห็นได้ว่า เส้นแนวโน้มของแต่ละประเทศมีความคล้ายคลึงกัน">
+            <Graph title="กราฟแสดงแนวโน้มการเติบโตของ GDP ในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllGdp} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="raised" color="primary" onClick={() => this.chart.drawChartALL()}>All</Button>
@@ -414,7 +414,7 @@ class MainImpl extends Component {
             </Graph>
           </Grid>
           <Grid item>
-            <Graph title="กราฟแสดงแนวโน้วภาษีรายได้บุคคลธรรมดาของแต่ละประเทศ ตั้งแต่ปี 1996 - 2017">
+            <Graph title="กราฟแสดงแนวโน้มการเติบโตของรายได้ของรัฐในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllRev} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartALL()}>All</Button>
@@ -424,6 +424,13 @@ class MainImpl extends Component {
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartLUX()}>Luxembourg</Button>
                 <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartCHE()}>Switzerland</Button>
               </div>
+            </Graph>
+          </Grid>
+          <Grid item>
+            <Graph 
+              title="กราฟแสดงแนวโน้วภาษีรายได้บุคคลธรรมดาของแต่ละประเทศ ตั้งแต่ปี 1996 - 2017" 
+              subheader="จากการทดสอบด้วย Anova One-Factor เพื่อหาความสัมพันธ์ของอัตราการเติบโตของภาษีของแต่ละประเทศ พบว่าแต่ละประเทศมีแนวโน้มการเติบโตในลักษณะเดียวกัน จากกราฟจะเห็นได้ว่า เส้นแนวโน้มของแต่ละประเทศมีความคล้ายคลึงกัน">
+              <div ref={this.refTaxGrowthRate} style={{ width: 900, height: 500 }}></div>
             </Graph>
           </Grid>
           <Grid item>
@@ -444,11 +451,6 @@ class MainImpl extends Component {
           <Grid item>
             <Graph title="กราฟเปรียบเทียบรายได้ของรัฐบาลจากสินค้าและบริการของแต่ละประเทศ ตั้งแต่ปี 2016 - 2018">
               <div ref={this.refRevGood} style={{ width: 900, height: 500 }}></div>
-            </Graph>
-          </Grid>
-          <Grid item>
-            <Graph>
-              <div ref={this.refTaxGrowthRate} style={{ width: 900, height: 500 }}></div>
             </Graph>
           </Grid>
         </Grid>
