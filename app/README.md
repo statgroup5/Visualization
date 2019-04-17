@@ -1,8 +1,3 @@
-## Preview Link
-https://youthful-kalam-50a337.netlify.com/
-
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
