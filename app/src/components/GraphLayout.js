@@ -36,7 +36,7 @@ class GraphLayout extends React.Component {
                     <Grid item xs={3}>
                         <div className={classes.rootLeft}>
                             <div>
-                                <Button variant="fab" color="primary" onClick={() => this.props.history.replace("/")}>
+                                <Button variant="fab" color="primary" onClick={() => this.props.history.push("/")}>
                                     <ArrowBack />
                                 </Button>
                             </div>

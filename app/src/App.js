@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Card, withStyles, Button } from '@material-ui/core';
-import { MemoryRouter, StaticRouter, Route, Switch } from 'react-router-dom';
+import { MemoryRouter, BrowserRouter, StaticRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
 import GeoChart from './components/GeoChart';
@@ -455,7 +455,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <MemoryRouter basename="/">
+        <BrowserRouter basename="/">
           <Switch>
             <Route exact path="/" render={props => <Main {...props} />} />
             <Route exact path="/germany" render={props => <Germany {...props} /> } />
@@ -463,8 +463,9 @@ class App extends Component {
             <Route exact path="/switzerland" render={props => <Switzerland {...props} /> } />
             <Route exact path="/luxembourg" render={props => <Luxembourg {...props} /> } />
             <Route exact path="/italy" render={props => <Italy {...props} /> } />
+            <Redirect to="/" />
           </Switch>
-        </MemoryRouter>
+        </BrowserRouter>
       </React.Fragment>
     );
   }
