@@ -9,6 +9,12 @@ function drawChart() {
   queryString = encodeURIComponent("select A,B,C,D,E,F");
   var query = new google.visualization.Query(url + queryString);
   query.send(handleGDPLineResponse);
+
+  url =
+    "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=GrowthRate&headers=1&tq=";
+  queryString = encodeURIComponent("select A,B,C,D,E,F");
+  var query = new google.visualization.Query(url + queryString);
+  query.send(handleTaxGrowthRateLineResponse);
 }
 var animate = "out"
 
@@ -19,12 +25,9 @@ function handleGDPLineResponse(response) {
   }
   var data = response.getDataTable();
   var options = {
-    width: 1000,
-    height: 500,
     title: 'Gross Domestic Product 1995-1017 (GDP)',
     titleTextStyle: {
-      fontSize: 18, // 12, 18 whatever you want (don't specify px)
-      // bold: true,
+      fontSize: 18,
     },
     hAxis: {
       title: "Year",
@@ -43,8 +46,36 @@ function handleGDPLineResponse(response) {
     },
   }
   var chart = new google.visualization.LineChart(
-    document.getElementById("linechart_material"));
+    document.getElementById("GDP_5Country"));
   chart.draw(data, options);
+}
+
+function handleTaxGrowthRateLineResponse(response) {
+  if (response.isError()) {
+      errorAlert(response);
+      return;
+  }
+  var data = response.getDataTable();
+  var options = {
+      title: "Tax on Income And Profits of Individuals Growth Rate",
+      curveType: 'function',
+      hAxis: {
+          format: '#',
+          title: "Year"
+      },
+      vAxis: {
+        title: "Growth Rate",
+      },
+      animation: {
+          duration: 1000,
+          easing: animate,
+          startup: true,
+      },
+  };
+
+  var gdp_area = new google.visualization.LineChart(
+      document.getElementById("Tax_Growth_Rate"));
+  gdp_area.draw(data, options);
 }
 
 
