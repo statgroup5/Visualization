@@ -41,6 +41,11 @@ class MainImpl extends Component {
     this.refTaxGrowthRate = React.createRef();
 
     this.chart = {};
+
+    this.state = {
+      gdpIndex: 0,
+      revIndex: 0
+    };
   }
 
   componentDidMount() {
@@ -396,12 +401,12 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้มการเติบโตของ GDP ในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllGdp} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChart()}>All</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartFRA()}>France</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartGER()}>Germany</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartITA()}>Italy</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartLUX()}>Luxembourg</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.drawChartCHE()}>Switzerland</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 0 }, () => this.chart.drawChart())}}>All</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 1 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 1 }, () => this.chart.drawChartFRA())}}>France</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 2 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 2 }, () => this.chart.drawChartGER())}}>Germany</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 3 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 3 }, () => this.chart.drawChartITA())}}>Italy</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 4 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 4 }, () => this.chart.drawChartLUX())}}>Luxembourg</Button>
+                <Button variant="raised" color={this.state.gdpIndex == 5 ? "primary" : ""} onClick={() => { this.setState({  gdpIndex: 5 }, () => this.chart.drawChartCHE())}}>Switzerland</Button>
               </div>
             </Graph>
           </Grid>
@@ -409,12 +414,12 @@ class MainImpl extends Component {
             <Graph title="กราฟแสดงแนวโน้มการเติบโตของรายได้ของรัฐในแต่ละประเทศ ตั้งแต่ปี 1995 - 2017">
               <div ref={this.refAllRev} style={{ width: 900, height: 500 }}></div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChart()}>All</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartFRA()}>France</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartGER()}>Germany</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartITA()}>Italy</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartLUX()}>Luxembourg</Button>
-                <Button variant="raised" color="primary" onClick={() => this.chart.RdrawChartCHE()}>Switzerland</Button>
+                <Button variant="raised" color={this.state.revIndex == 0 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 0 }, () => this.chart.RdrawChart())}}>All</Button>
+                <Button variant="raised" color={this.state.revIndex == 1 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 1 }, () => this.chart.RdrawChartFRA())}}>France</Button>
+                <Button variant="raised" color={this.state.revIndex == 2 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 2 }, () => this.chart.RdrawChartGER())}}>Germany</Button>
+                <Button variant="raised" color={this.state.revIndex == 3 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 3 }, () => this.chart.RdrawChartITA())}}>Italy</Button>
+                <Button variant="raised" color={this.state.revIndex == 4 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 4 }, () => this.chart.RdrawChartLUX())}}>Luxembourg</Button>
+                <Button variant="raised" color={this.state.revIndex == 5 ? "primary" : ""} onClick={() => { this.setState({  revIndex: 5 }, () => this.chart.RdrawChartCHE())}}>Switzerland</Button>
               </div>
             </Graph>
           </Grid>
