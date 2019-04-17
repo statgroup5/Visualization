@@ -60,9 +60,9 @@ function handleGDPStackFactorsResponse(response) {
         },
     };
 
-    var gdp_area = new google.visualization.AreaChart(
+    var chart = new google.visualization.AreaChart(
         document.getElementById("stack_CHE_GDP"));
-    gdp_area.draw(data, options_fullStacked);
+    chart.draw(data, options_fullStacked);
 }
 
 function handleRevStackFactorsResponse(response) {
@@ -95,9 +95,9 @@ function handleRevStackFactorsResponse(response) {
         },
     };
 
-    var gdp_area = new google.visualization.AreaChart(
+    var chart = new google.visualization.AreaChart(
         document.getElementById("stack_CHE_REV"));
-    gdp_area.draw(data, options_fullStacked);
+    chart.draw(data, options_fullStacked);
 }
 
 function handleGDPLineResponse(response) {
@@ -119,9 +119,9 @@ function handleGDPLineResponse(response) {
         },
     };
 
-    var gdp_area = new google.visualization.LineChart(
+    var chart = new google.visualization.LineChart(
         document.getElementById("line_CHE_GDP"));
-    gdp_area.draw(data, options);
+    chart.draw(data, options);
 }
 
 function handleRevLineResponse(response) {
@@ -143,9 +143,9 @@ function handleRevLineResponse(response) {
         },
     };
 
-    var gdp_area = new google.visualization.LineChart(
+    var chart = new google.visualization.LineChart(
         document.getElementById("line_CHE_REV"));
-    gdp_area.draw(data, options);
+        chart.draw(data, options);
 }
 
 function errorAlert(res) {
