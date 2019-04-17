@@ -61,30 +61,29 @@ class Italy extends React.Component {
         
         function drawChart() {
             let url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
-            let queryString = encodeURIComponent("select A,B,C,D,E,F,G");
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=ITA_GDP_Factors&headers=1&tq=";
+            let queryString = encodeURIComponent("select A,B,C,D,E");
             let query = new google.visualization.Query(url + queryString);
             query.send(handleGDPStackFactorsResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
-            queryString = encodeURIComponent("select A,B,C,D,E");
-            query = new google.visualization.Query(url + queryString);
-            query.send(handleRevStackFactorsResponse);
-        
-            url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_GDP_Factors&headers=1&tq=";
-            queryString = encodeURIComponent("select A,H");
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=ITA_GDP_Factors&headers=1&tq=";
+            queryString = encodeURIComponent("select A,F");
             query = new google.visualization.Query(url + queryString);
             query.send(handleGDPLineResponse);
         
             url =
-                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=CHE_REV_Factors&headers=1&tq=";
-            queryString = encodeURIComponent("select A,F");
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=ITA_REV_Factors&headers=1&tq=";
+            queryString = encodeURIComponent("select A,B,C,D,E,F");
+            query = new google.visualization.Query(url + queryString);
+            query.send(handleRevStackFactorsResponse);
+        
+            url =
+                "https://docs.google.com/spreadsheets/d/1hWZtGisBtY-n5xhDcCVu-8BTN3KJjwMM0eKi2oTsdcw/gviz/tq?sheet=ITA_REV_Factors&headers=1&tq=";
+            queryString = encodeURIComponent("select A,G");
             query = new google.visualization.Query(url + queryString);
             query.send(handleRevLineResponse);
         }
-
         const animate = "out"
         
         function handleGDPStackFactorsResponse(response) {
@@ -121,6 +120,33 @@ class Italy extends React.Component {
             gdp_area.draw(data, options_fullStacked);
         }
         
+        function handleGDPLineResponse(response) {
+            if (response.isError()) {
+                errorAlert(response);
+                return;
+            }
+            var data = response.getDataTable();
+            var options = {
+                title: "GDP (millions EURO)",
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                hAxis: {
+                    format: '#',
+                    title: "year"
+                },
+                animation: {
+                    duration: 1000,
+                    easing: animate,
+                    startup: true,
+                },
+            };
+        
+            var gdp_area = new google.visualization.LineChart(_this.chartRef2.current);
+            gdp_area.draw(data, options);
+        }
+        
         function handleRevStackFactorsResponse(response) {
             if (response.isError()) {
                 errorAlert(response);
@@ -151,31 +177,8 @@ class Italy extends React.Component {
                 },
             };
         
-            var gdp_area = new google.visualization.AreaChart(_this.chartRef2.current);
+            var gdp_area = new google.visualization.AreaChart(_this.chartRef3.current);
             gdp_area.draw(data, options_fullStacked);
-        }
-        
-        function handleGDPLineResponse(response) {
-            if (response.isError()) {
-                errorAlert(response);
-                return;
-            }
-            var data = response.getDataTable();
-            var options = {
-                title: "GDP",
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                animation: {
-                    duration: 1000,
-                    easing: animate,
-                    startup: true,
-                },
-            };
-        
-            var gdp_area = new google.visualization.LineChart(_this.chartRef3.current);
-            gdp_area.draw(data, options);
         }
         
         function handleRevLineResponse(response) {
@@ -185,10 +188,14 @@ class Italy extends React.Component {
             }
             var data = response.getDataTable();
             var options = {
-                title: "Revenue",
+                title: "Revenue (millions EURO)",
                 curveType: 'function',
                 legend: {
                     position: 'bottom'
+                },
+                hAxis: {
+                    format: '#',
+                    title: "year"
                 },
                 animation: {
                     duration: 1000,
